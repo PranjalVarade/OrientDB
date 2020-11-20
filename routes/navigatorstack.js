@@ -7,7 +7,7 @@ import postData from "../component/postData.js";
 import getData from "../component/getData.js";
 import login from "../component/login.js";
 import addUser from "../component/addUser.js";
-import deleteUser from "../component/deleteUser.js";
+
 const screens = {
   login: {
     screen: login,
@@ -41,12 +41,6 @@ const screens = {
   },
   addUser: {
     screen: addUser,
-    //navigationOptions: {
-    //headerShown: false,
-    //},
-  },
-  deleteUser: {
-    screen: deleteUser,
     //navigationOptions: {
     //headerShown: false,
     //},
