@@ -55,12 +55,6 @@ export default class homePage extends Component {
         >
           <Text style={styles.Labels}>Add User</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.container}
-          onPress={() => this.props.navigation.navigate("deleteUser")}
-        >
-          <Text style={styles.Labels}>Delete User</Text>
-        </TouchableOpacity>
       </View>
     );
   }

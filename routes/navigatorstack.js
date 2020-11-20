@@ -5,16 +5,10 @@ import homePage from "../component/homePage.js";
 import deleteData from "../component/deleteData.js";
 import postData from "../component/postData.js";
 import getData from "../component/getData.js";
-import login from "../component/login.js";
+
 import addUser from "../component/addUser.js";
 
 const screens = {
-  login: {
-    screen: login,
-    navigationOptions: {
-      //headerShown: false,
-    },
-  },
   homePage: {
     screen: homePage,
     navigationOptions: {
