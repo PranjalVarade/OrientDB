@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default class getData extends Component {
+export default class getUser extends Component {
   constructor() {
     super();
     this.state = {
@@ -13,13 +12,18 @@ export default class getData extends Component {
   renderItem = ({ item }) => {
     return (
       <View style={styles.eachBox}>
-        <Text style={styles.eachText}>{item.qoutes}</Text>
+        <Text style={styles.eachText}>
+          {item.firstName} {item.lastName}
+        </Text>
       </View>
     );
   };
+
   componentDidMount() {
+    const axios = require("axios");
+
     const url =
-      "http://localhost:2480/query/qoutes-db/sql/select%20qoutes%20from%20qoute";
+      "http://localhost:2480/query/qoutes-db/sql/select%20firstName,%20lastName%20from%20user";
 
     fetch(url, {
       headers: {
@@ -36,7 +40,10 @@ export default class getData extends Component {
   render() {
     return (
       <View style={styles.main_container}>
-        <FlatList data={this.state.dataSource} renderItem={this.renderItem} />
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={this.renderItem}
+        ></FlatList>
       </View>
     );
   }
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   eachBox: {
-    height: 70,
+    height: 40,
     width: 400,
     backgroundColor: "#843b62",
     alignSelf: "center",

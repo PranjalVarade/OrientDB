@@ -5,7 +5,6 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  FlatList,
 } from "react-native";
 export default class addUser extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ export default class addUser extends Component {
       firstName: "",
       lastName: "",
     };
-    // this.headleDeleteQouteChange = this.headleDeleteQouteChange.bind(this);
+
     this.addUserbtn = this.addUserbtn.bind(this);
   }
   handlefirstNameChange = (text) => {
@@ -33,14 +32,9 @@ export default class addUser extends Component {
       makeaddRequest();
       async function makeaddRequest() {
         try {
-          //const url1 = `http://localhost:2480/command/qoutes-db/sql/DELETE%20VERTEX%20qoute%20WHERE%20qoutes=\"${qoute_delete}\"`;
-          //console.log(url1);
           var config_addUser = {
             method: "post",
-            //url: 'http://localhost:2480/command/qoutes-db/sql/DELETE VERTEX qoute WHERE  qoutes= \'you can do it\'',
-            //url:'http://localhost:2480/command/qoutes-db/sql/DELETE VERTEX qoute WHERE  qoutes= qoute_delete?qoutes=',
-            //url: `http://localhost:2480/command/qoutes-db/sql/DELETE%20VERTEX%20qoute%20WHERE%20qoutes=\"${qoute_delete}\"`,
-            //url: `http://localhost:2480/command/qoutes-db/sql/DELETE VERTEX qoute WHERE qoutes= '"${qoute_delete}"'`,
+
             url: `http://localhost:2480/function/qoutes-db/addUser/${firstName}/${lastName}`,
             headers: {
               Authorization: "Basic cm9vdDpyb290",
@@ -130,9 +124,8 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   input_container: {
-    width: 200,
+    width: 300,
     borderBottomWidth: 2,
-    //paddingBottom:50,
   },
   input_Text: {
     fontSize: 20,

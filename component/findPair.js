@@ -1,67 +1,70 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 
-export default class deleteData extends Component {
+export default class findPair extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qoute_delete: "",
+      dataSource: [],
+      fname: "",
     };
-
-    this.deletebtn = this.deletebtn.bind(this);
+    this.findbtn = this.findbtn.bind(this);
   }
-  handleDeleteQouteChange = (text) => {
-    this.setState({ qoute_delete: text });
+  handlePairChange = (text) => {
+    this.setState({ fname: text });
   };
 
-  deletebtn() {
-    const { qoute_delete } = this.state;
+  renderItem = ({ item }) => {
+    return (
+      <View>
+        <View>
+          <Text style={styles.eachText}>{item.qoutes}</Text>
+        </View>
+      </View>
+    );
+  };
+
+  findbtn() {
+    const { fname } = this.state;
     const axios = require("axios");
-    if (qoute_delete == "") {
+    if (fname == "") {
       alert("Please enter data");
     } else {
-      makeDeleteRequest();
-      async function makeDeleteRequest() {
-        try {
-          var config_delete = {
-            method: "get",
+      const url = `http://localhost:2480/function/qoutes-db/findqoute/${fname}/`;
 
-            url: `http://localhost:2480/command/qoutes-db/sql/DELETE%20VERTEX%20qoute%20WHERE%20qoutes=\"${qoute_delete}\"`,
-
-            headers: {
-              Authorization: "Basic cm9vdDpyb290",
-            },
-          };
-          axios(config_delete).then(function (response) {
-            console.log(JSON.stringify(response.data));
-
-            alert("Deleted Sucessfully");
+      fetch(url, {
+        headers: {
+          Authorization: "Basic cm9vdDpyb290",
+        },
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({
+            dataSource: responseJson.result,
           });
-        } catch (error) {
-          console.log(error);
-          alert("Error");
-        }
-      }
+        });
     }
   }
+
   render() {
     return (
       <View style={styles.main_container}>
         <View style={styles.header_container}>
-          <Text style={styles.header}>Delete Qoute</Text>
+          <Text style={styles.header}>Qoute</Text>
         </View>
         <View style={styles.input_container}>
           <TextInput
             style={styles.input_Text}
-            placeholder="Enter Qoute "
-            name="Qoute-delete"
-            onChangeText={this.handleDeleteQouteChange}
+            placeholder="Enter FirstName "
+            name="fname"
+            onChangeText={this.handlePairChange}
           />
         </View>
 
@@ -69,13 +72,14 @@ export default class deleteData extends Component {
           <View style={styles.container}>
             <TouchableOpacity
               onPress={() => {
-                this.deletebtn();
+                this.findbtn();
               }}
             >
-              <Text style={styles.Labels}>Delete</Text>
+              <Text style={styles.Labels}>Search</Text>
             </TouchableOpacity>
           </View>
         </View>
+        <FlatList data={this.state.dataSource} renderItem={this.renderItem} />
       </View>
     );
   }
@@ -120,5 +124,19 @@ const styles = StyleSheet.create({
   },
   input_Text: {
     fontSize: 20,
+  },
+
+  eachBox: {
+    height: 70,
+    width: 400,
+    backgroundColor: "#843b62",
+    alignSelf: "center",
+    border: "3px solid #0b032d",
+    paddingTop: 5,
+  },
+  eachText: {
+    alignSelf: "center",
+    fontSize: 20,
+    paddingTop: 5,
   },
 });

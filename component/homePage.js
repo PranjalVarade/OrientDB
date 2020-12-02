@@ -1,13 +1,5 @@
 import React, { Component, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
 export default class homePage extends Component {
   constructor(props) {
@@ -55,6 +47,20 @@ export default class homePage extends Component {
         >
           <Text style={styles.Labels}>Add User</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.container}
+          onPress={() => this.props.navigation.navigate("getUser")}
+        >
+          <Text style={styles.Labels}>Get all User</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.container}
+          onPress={() => this.props.navigation.navigate("findPair")}
+        >
+          <Text style={styles.Labels}>Search</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -87,9 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     alignSelf: "center",
   },
-  imgContainer: {
-    //backgroundColor:"black",
-  },
+
   img: {
     height: 200,
     width: 200,

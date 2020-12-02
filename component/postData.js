@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import homePage from "./homePage";
 
 export default class postData extends Component {
   constructor(props) {
@@ -16,7 +15,6 @@ export default class postData extends Component {
     this.state = {
       firstName: "",
       qoutes: "",
-     
     };
     this.headleFirstNameChange = this.headleFirstNameChange.bind(this);
     this.headleQouteChange = this.headleQouteChange.bind(this);
@@ -49,15 +47,14 @@ export default class postData extends Component {
           var config = {
             method: "post",
             url: `http://localhost:2480/function/qoutes-db/addQoute/${firstName}/${qoutes}`,
-            //url: `http://localhost:2480/function/qoutes-db/addQoute/${user__name}/${qoutes}`,
+
             headers: {
               Authorization: "Basic cm9vdDpyb290",
             },
           };
           axios(config).then(function (response) {
             console.log(JSON.stringify(response.data));
-            //navigation.navigate("homePage");
-            //this.props.navigation.navigate("homePage");
+
             alert("Qoute posted");
           });
         } catch (error) {
@@ -70,15 +67,12 @@ export default class postData extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    //const { navigation } = this.props;
-    //const user_name = navigation.getParam("userName");
-    //console.log(JSON.stringify(user_name));
+
     return (
       <View style={styles.main_container}>
         <View style={styles.header_container}>
           <Text style={styles.header}>Post Your Qoute</Text>
         </View>
-       {/* <Text>User Name: {JSON.stringify(user_name)}</Text>*/}
 
         <View style={styles.input_container}>
           <TextInput
@@ -133,7 +127,6 @@ const styles = StyleSheet.create({
   input_container: {
     width: 200,
     borderBottomWidth: 2,
-    //paddingBottom:50,
   },
   input_Text: {
     fontSize: 20,

@@ -7,37 +7,32 @@ import postData from "../component/postData.js";
 import getData from "../component/getData.js";
 
 import addUser from "../component/addUser.js";
+import getUser from "../component/getUser.js";
+import findPair from "../component/findPair.js";
 
 const screens = {
   homePage: {
     screen: homePage,
-    navigationOptions: {
-      //headerShown: false,
-    },
+    navigationOptions: {},
   },
   deleteData: {
     screen: deleteData,
-    navigationOptions: {
-      //headerShown: false,
-    },
+    navigationOptions: {},
   },
   postData: {
     screen: postData,
-    navigationOptions: {
-      //headerShown: false,
-    },
   },
   getData: {
     screen: getData,
-    navigationOptions: {
-      //headerShown: false,
-    },
   },
   addUser: {
     screen: addUser,
-    //navigationOptions: {
-    //headerShown: false,
-    //},
+  },
+  getUser: {
+    screen: getUser,
+  },
+  findPair: {
+    screen: findPair,
   },
 };
 const createAccountstack = createStackNavigator(screens);
