@@ -81,7 +81,7 @@ export default class postData extends Component {
             name="firstName"
             onChangeText={this.headleFirstNameChange}
           />
-    </View>
+        </View>
         <View style={styles.input_container}>
           <TextInput
             style={styles.input_Text}
